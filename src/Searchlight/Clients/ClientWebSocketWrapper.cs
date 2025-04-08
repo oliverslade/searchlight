@@ -1,4 +1,5 @@
 using System.Net.WebSockets;
+using Searchlight.Clients.Interfaces;
 
 namespace Searchlight.Clients
 {

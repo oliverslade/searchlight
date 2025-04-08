@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Searchlight.Models;
 using Searchlight.Clients;
+using Searchlight.Clients.Interfaces;
 
 namespace Searchlight.Tests.Clients
 {
@@ -25,14 +26,11 @@ namespace Searchlight.Tests.Clients
         [TestMethod]
         public async Task ConnectAsync_WhenNotConnected_ConnectsToWebSocket()
         {
-            // Arrange
             _mockWebSocket.Setup(ws => ws.ConnectAsync(It.IsAny<Uri>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
-            // Act
             await _client.ConnectAsync();
 
-            // Assert
             _mockWebSocket.Verify(ws => ws.ConnectAsync(
                 It.Is<Uri>(uri => uri.ToString() == $"wss://maze.robanderson.dev/ws/{_testMazeId}"),
                 It.IsAny<CancellationToken>()),

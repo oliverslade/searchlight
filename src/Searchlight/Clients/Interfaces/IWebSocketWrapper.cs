@@ -1,6 +1,6 @@
 using System.Net.WebSockets;
 
-namespace Searchlight.Clients
+namespace Searchlight.Clients.Interfaces
 {
     public interface IWebSocketWrapper : IDisposable
     {

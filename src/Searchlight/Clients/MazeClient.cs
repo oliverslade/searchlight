@@ -2,6 +2,7 @@ using System.Net.WebSockets;
 using System.Text;
 using System.Text.Json;
 using Searchlight.Models;
+using Searchlight.Clients.Interfaces;
 
 namespace Searchlight.Clients
 {

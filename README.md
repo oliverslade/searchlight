@@ -1,10 +1,12 @@
 # Searchlight
 
-Searchlight is an API that solves maze puzzles by connecting to a maze-solving service via WebSockets.
+Searchlight is an API that solves maze puzzles by connecting to a maze via WebSockets.
+
+The details of the puzzle this solves can be found at: https://maze.robanderson.dev
 
 ## What is Searchlight?
 
-Searchlight is designed to programmatically solve maze puzzles from the Software Delivery Community at Opencast Software. It connects to a maze service, navigates through the maze, and finds the optimal path to the solution.
+Searchlight is designed to programmatically solve the Learn by Doing maze puzzle from the Software Delivery Community at Opencast Software. It connects to a maze, navigates through the maze, and finds the end of the maze with as few moves as it can.
 
 ## How It Works
 

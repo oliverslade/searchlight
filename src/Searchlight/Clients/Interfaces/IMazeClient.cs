@@ -1,6 +1,6 @@
 using Searchlight.Models;
 
-namespace Searchlight.Clients
+namespace Searchlight.Clients.Interfaces
 {
     public interface IMazeClient : IDisposable
     {
