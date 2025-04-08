@@ -6,7 +6,7 @@ using Moq;
 using Searchlight.Models;
 using Searchlight.Clients;
 
-namespace Searchlight.Tests.Services
+namespace Searchlight.Tests.Clients
 {
     [TestClass]
     public class MazeClientTests
