@@ -1,0 +1,17 @@
+# Build results
+bin/
+obj/
+
+# IDE files
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# Test results
+TestResults/
+
+# OS specific
+.DS_Store
+Thumbs.db

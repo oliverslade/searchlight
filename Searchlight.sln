@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E8311F05-527E-4B5C-9E1F-B701CD535AD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Searchlight", "src\Searchlight\Searchlight.csproj", "{1B35DF3E-0CFB-403C-8763-31AE2E26F94E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{ECDDE0E9-BF76-443F-B902-39C5115A9578}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Searchlight.Tests", "tests\Searchlight.Tests\Searchlight.Tests.csproj", "{45E4F75D-C0AD-415F-8B34-2674468A7DDA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B35DF3E-0CFB-403C-8763-31AE2E26F94E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B35DF3E-0CFB-403C-8763-31AE2E26F94E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B35DF3E-0CFB-403C-8763-31AE2E26F94E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B35DF3E-0CFB-403C-8763-31AE2E26F94E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45E4F75D-C0AD-415F-8B34-2674468A7DDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45E4F75D-C0AD-415F-8B34-2674468A7DDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45E4F75D-C0AD-415F-8B34-2674468A7DDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45E4F75D-C0AD-415F-8B34-2674468A7DDA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1B35DF3E-0CFB-403C-8763-31AE2E26F94E} = {E8311F05-527E-4B5C-9E1F-B701CD535AD3}
+		{45E4F75D-C0AD-415F-8B34-2674468A7DDA} = {ECDDE0E9-BF76-443F-B902-39C5115A9578}
+	EndGlobalSection
+EndGlobal
