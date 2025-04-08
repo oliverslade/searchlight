@@ -3,7 +3,7 @@ using System.Text;
 using System.Text.Json;
 using Searchlight.Models;
 
-namespace Searchlight.Services
+namespace Searchlight.Clients
 {
     public class MazeClient : IMazeClient, IDisposable
     {

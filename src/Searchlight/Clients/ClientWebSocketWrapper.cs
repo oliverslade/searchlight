@@ -1,10 +1,7 @@
 using System.Net.WebSockets;
 
-namespace Searchlight.Services
+namespace Searchlight.Clients
 {
-    /// <summary>
-    /// Implementation of the WebSocket wrapper using ClientWebSocket
-    /// </summary>
     public class ClientWebSocketWrapper : IWebSocketWrapper
     {
         private readonly ClientWebSocket _webSocket;

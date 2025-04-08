@@ -4,7 +4,7 @@ using System.Text.Json;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Searchlight.Models;
-using Searchlight.Services;
+using Searchlight.Clients;
 
 namespace Searchlight.Tests.Services
 {
