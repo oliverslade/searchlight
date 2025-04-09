@@ -26,12 +26,12 @@ namespace Searchlight.Tests.Controllers
             var responseObject = JsonSerializer.Deserialize<SolveResponse>(jsonString);
 
             Assert.IsNotNull(responseObject, "Deserialized responseObject is null.");
-            Assert.AreEqual($"Solving maze: {mazeId}", responseObject.message);
+            Assert.AreEqual($"Solving maze: {mazeId}", responseObject.Message);
         }
 
         private class SolveResponse
         {
-            public string? message { get; set; }
+            public string? Message { get; set; }
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Searchlight.Controllers
         [HttpPost("solve/{mazeId}")]
         public IActionResult SolveMaze(string mazeId)
         {
-            return Ok(new { message = $"Solving maze: {mazeId}" });
+            return Ok(new { Message = $"Solving maze: {mazeId}" });
         }
     }
 }
