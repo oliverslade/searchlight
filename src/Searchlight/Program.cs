@@ -6,6 +6,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers(); // Add controllers
 
+builder.Services.AddTransient<Searchlight.Clients.Interfaces.IMazeClientFactory, Searchlight.Clients.MazeClientFactory>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

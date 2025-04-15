@@ -1,37 +1,34 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using Searchlight.Clients.Interfaces;
 using Searchlight.Controllers;
-using System.Text.Json;
+using Searchlight.Models;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Searchlight.Tests.Controllers
 {
     [TestClass]
     public class MazeControllerTests
     {
-        [TestMethod]
-        public void SolveMaze_ReturnsOkResult()
+        private Mock<IMazeClientFactory> _mockClientFactory = null!;
+
+        [TestInitialize]
+        public void Setup()
         {
-            var controller = new MazeController();
-            var mazeId = "abc123";
-
-            var result = controller.SolveMaze(mazeId);
-
-            Assert.IsInstanceOfType(result, typeof(OkObjectResult));
-            var okResult = result as OkObjectResult;
-            Assert.IsNotNull(okResult, "okResult is null.");
-            Assert.AreEqual(200, okResult!.StatusCode);
-
-            var responseValue = okResult.Value;
-            var jsonString = JsonSerializer.Serialize(responseValue);
-            var responseObject = JsonSerializer.Deserialize<SolveResponse>(jsonString);
-
-            Assert.IsNotNull(responseObject, "Deserialized responseObject is null.");
-            Assert.AreEqual($"Solving maze: {mazeId}", responseObject.Message);
+            _mockClientFactory = new Mock<IMazeClientFactory>();
         }
 
-        private class SolveResponse
+        [TestMethod]
+        public void SolveMaze_WithNullOrEmptyMazeId_ReturnsBadRequest()
         {
-            public string? Message { get; set; }
+            var controller = new MazeController(_mockClientFactory.Object);
+
+            var result = controller.SolveMaze("").Result;
+
+            Assert.IsInstanceOfType(result, typeof(BadRequestObjectResult));
         }
     }
 }
