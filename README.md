@@ -54,12 +54,6 @@ The endpoint returns the following information:
 curl -X GET "http://localhost:5109/api/mazes/MAZE_ID/solution" -H "accept: application/json"
 ```
 
-Example with a specific maze ID:
-
-```bash
-curl -X GET "http://localhost:5109/api/mazes/8N3SBQTNZWR26/solution" -H "accept: application/json"
-```
-
 ### Example Response
 
 ```json
