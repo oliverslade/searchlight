@@ -6,7 +6,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers(); // Add controllers
 
-// Register services directly
 builder.Services.AddTransient<Searchlight.Clients.Interfaces.IWebSocketWrapper, Searchlight.Clients.ClientWebSocketWrapper>();
 builder.Services.AddTransient<Searchlight.Services.Interfaces.IMazeSolverService, Searchlight.Services.MazeSolverService>();
 

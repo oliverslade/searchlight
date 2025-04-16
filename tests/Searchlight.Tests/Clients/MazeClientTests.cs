@@ -1,7 +1,6 @@
 using System.Net.WebSockets;
 using System.Text;
 using System.Text.Json;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Searchlight.Models;
 using Searchlight.Clients;
@@ -42,9 +41,9 @@ namespace Searchlight.Tests.Clients
         {
             _mockWebSocket.Setup(ws => ws.ConnectAsync(It.IsAny<Uri>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
-            
+
             await _client.ConnectAsync();
-            
+
             await _client.ConnectAsync();
 
             _mockWebSocket.Verify(ws => ws.ConnectAsync(It.IsAny<Uri>(), It.IsAny<CancellationToken>()), Times.Once);
@@ -61,14 +60,14 @@ namespace Searchlight.Tests.Clients
                 Description = "A test job",
                 AvailableDirections = new List<string> { Direction.Up, Direction.Left }
             };
-            
+
             var jsonBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(expectedLocation));
-            
+
             _mockWebSocket.Setup(ws => ws.ConnectAsync(It.IsAny<Uri>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
-                
+
             _mockWebSocket.Setup(ws => ws.ReceiveAsync(It.IsAny<ArraySegment<byte>>(), It.IsAny<CancellationToken>()))
-                .Callback<ArraySegment<byte>, CancellationToken>((buffer, token) => 
+                .Callback<ArraySegment<byte>, CancellationToken>((buffer, token) =>
                 {
                     Array.Copy(jsonBytes, 0, buffer.Array!, buffer.Offset, jsonBytes.Length);
                 })
@@ -96,7 +95,7 @@ namespace Searchlight.Tests.Clients
 
             _mockWebSocket.Setup(ws => ws.ConnectAsync(It.IsAny<Uri>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
-                
+
             _mockWebSocket.Setup(ws => ws.SendAsync(
                     It.IsAny<ArraySegment<byte>>(),
                     WebSocketMessageType.Text,
@@ -125,21 +124,21 @@ namespace Searchlight.Tests.Clients
                 Id = "LOC456",
                 AvailableDirections = new List<string> { Direction.Up, Direction.Right }
             };
-            
+
             var jsonBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(expectedLocation));
-            
+
             _mockWebSocket.Setup(ws => ws.ConnectAsync(It.IsAny<Uri>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
-                
+
             _mockWebSocket.Setup(ws => ws.SendAsync(
                     It.IsAny<ArraySegment<byte>>(),
                     WebSocketMessageType.Text,
                     true,
                     It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
-                
+
             _mockWebSocket.Setup(ws => ws.ReceiveAsync(It.IsAny<ArraySegment<byte>>(), It.IsAny<CancellationToken>()))
-                .Callback<ArraySegment<byte>, CancellationToken>((buffer, token) => 
+                .Callback<ArraySegment<byte>, CancellationToken>((buffer, token) =>
                 {
                     Array.Copy(jsonBytes, 0, buffer.Array!, buffer.Offset, jsonBytes.Length);
                 })
@@ -167,21 +166,21 @@ namespace Searchlight.Tests.Clients
                 Id = "START",
                 AvailableDirections = new List<string> { Direction.Down, Direction.Right }
             };
-            
+
             var jsonBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(expectedLocation));
-            
+
             _mockWebSocket.Setup(ws => ws.ConnectAsync(It.IsAny<Uri>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
-                
+
             _mockWebSocket.Setup(ws => ws.SendAsync(
                     It.IsAny<ArraySegment<byte>>(),
                     WebSocketMessageType.Text,
                     true,
                     It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
-                
+
             _mockWebSocket.Setup(ws => ws.ReceiveAsync(It.IsAny<ArraySegment<byte>>(), It.IsAny<CancellationToken>()))
-                .Callback<ArraySegment<byte>, CancellationToken>((buffer, token) => 
+                .Callback<ArraySegment<byte>, CancellationToken>((buffer, token) =>
                 {
                     Array.Copy(jsonBytes, 0, buffer.Array!, buffer.Offset, jsonBytes.Length);
                 })

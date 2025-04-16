@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Searchlight.Models
 {
     public class SolveResult

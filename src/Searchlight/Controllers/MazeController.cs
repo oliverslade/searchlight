@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Searchlight.Services.Interfaces;
-using System;
-using System.Threading.Tasks;
 
 namespace Searchlight.Controllers
 {
