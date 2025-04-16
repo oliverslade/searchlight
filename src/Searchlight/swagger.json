@@ -1,0 +1,183 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Searchlight API",
+    "description": "A web API for solving maze puzzles programmatically",
+    "contact": {
+      "name": "Searchlight Team",
+      "email": "info@searchlight.com"
+    },
+    "version": "v1"
+  },
+  "paths": {
+    "/api/mazes/{mazeId}/solution": {
+      "get": {
+        "tags": ["Maze"],
+        "summary": "Solves a maze with the given maze ID",
+        "description": "Connects to the maze via WebSocket, navigates through it, and finds the solution",
+        "operationId": "solveMaze",
+        "parameters": [
+          {
+            "name": "mazeId",
+            "in": "path",
+            "description": "The unique ID of the maze to solve",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the solution when maze is successfully solved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mazeId": {
+                      "type": "string",
+                      "description": "The ID of the solved maze"
+                    },
+                    "dreamJob": {
+                      "type": "string",
+                      "description": "The job title and company name found at the end of the maze"
+                    },
+                    "solvedIn": {
+                      "type": "string",
+                      "description": "Time taken to solve the maze"
+                    },
+                    "totalMoves": {
+                      "type": "integer",
+                      "description": "Total number of moves used to solve the maze"
+                    },
+                    "totalResets": {
+                      "type": "integer",
+                      "description": "Total number of times the maze was reset during solving"
+                    }
+                  }
+                },
+                "examples": {
+                  "successExample": {
+                    "value": {
+                      "mazeId": "8N3SBQTNZWR26",
+                      "dreamJob": "Lead Web Engineer at FitFortress Limited",
+                      "solvedIn": "1.25 seconds",
+                      "totalMoves": 42,
+                      "totalResets": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "If the mazeId is null or empty",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "errorExample": {
+                    "value": {
+                      "error": "Maze ID is required"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "If the maze could not be solved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "errorExample": {
+                    "value": {
+                      "error": "Could not find a solution for this maze"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "If there was an internal error during solving",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "errorExample": {
+                    "value": {
+                      "error": "Failed to solve maze: Connection error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/health": {
+      "get": {
+        "tags": ["Health"],
+        "summary": "Checks the health status of the API",
+        "description": "This endpoint returns a simple health check with the current timestamp. Use this endpoint to verify the API is running correctly.",
+        "operationId": "checkHealth",
+        "responses": {
+          "200": {
+            "description": "Returns health status information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Health status of the API"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Current timestamp when the health check was performed"
+                    }
+                  }
+                },
+                "examples": {
+                  "healthExample": {
+                    "value": {
+                      "status": "healthy",
+                      "timestamp": "2025-04-16T10:30:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

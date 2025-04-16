@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Searchlight.Controllers;
-using System;
 using System.Text.Json;
 
 namespace Searchlight.Tests.Controllers

@@ -40,7 +40,6 @@ Searchlight provides a single API endpoint for solving mazes:
 
 The endpoint returns the following information:
 
-- Success status
 - Maze ID
 - Dream job (title and company name)
 - Time taken to solve
@@ -58,7 +57,6 @@ curl -X GET "http://localhost:5109/api/mazes/MAZE_ID/solution" -H "accept: appli
 
 ```json
 {
-  "success": true,
   "mazeId": "8N3SBQTNZWR26",
   "dreamJob": "Lead Web Engineer at FitFortress Limited",
   "solvedIn": "1.25 seconds",
