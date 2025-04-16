@@ -75,7 +75,6 @@ namespace Searchlight.Tests.Services
         [ExpectedException(typeof(ArgumentException))]
         public async Task SolveMazeAsync_WithNullMazeId_ThrowsArgumentException()
         {
-            // Act
             await _service.SolveMazeAsync(null!);
         }
 
@@ -83,7 +82,6 @@ namespace Searchlight.Tests.Services
         [ExpectedException(typeof(ArgumentException))]
         public async Task SolveMazeAsync_WithWhitespaceMazeId_ThrowsArgumentException()
         {
-            // Act
             await _service.SolveMazeAsync("   ");
         }
     }
