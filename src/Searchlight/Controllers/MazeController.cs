@@ -5,6 +5,7 @@ namespace Searchlight.Controllers
 {
     [ApiController]
     [Route("api/mazes")]
+    [Produces("application/json")]
     public class MazeController : ControllerBase
     {
         private readonly IMazeSolverService _mazeSolverService;
@@ -36,7 +37,6 @@ namespace Searchlight.Controllers
 
                 var response = new
                 {
-                    Success = result.Success,
                     MazeId = mazeId,
                     DreamJob = result.EndLocation != null
                         ? $"{result.EndLocation.Title} at {result.EndLocation.Name}"

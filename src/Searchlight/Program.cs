@@ -1,26 +1,51 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddControllers(); // Add controllers
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "Searchlight API",
+        Version = "v1"
+    });
+});
+builder.Services.AddControllers();
 
 builder.Services.AddTransient<Searchlight.Clients.Interfaces.IWebSocketWrapper, Searchlight.Clients.ClientWebSocketWrapper>();
 builder.Services.AddTransient<Searchlight.Services.Interfaces.IMazeSolverService, Searchlight.Services.MazeSolverService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var swaggerJsonPath = Path.Combine(AppContext.BaseDirectory, "swagger.json");
+
+    if (File.Exists(swaggerJsonPath))
+    {
+        app.UseSwaggerUI(c =>
+        {
+            c.SwaggerEndpoint("/swagger.json", "Searchlight API v1");
+            c.RoutePrefix = "swagger";
+            c.DocumentTitle = "Searchlight API Documentation";
+        });
+
+        app.MapGet("/swagger.json", () => Results.File(swaggerJsonPath, "application/json"));
+    }
+    else
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI(c =>
+        {
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "Searchlight API v1");
+            c.RoutePrefix = "swagger";
+            c.DocumentTitle = "Searchlight API Documentation";
+        });
+    }
 }
 
 // Add a route for the root URL that redirects to Swagger
 app.MapGet("/", () => Results.Redirect("/swagger"));
 
-app.MapControllers(); // Map controller routes
+app.MapControllers();
 
 app.Run();
