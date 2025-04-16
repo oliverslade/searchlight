@@ -1,11 +1,10 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Searchlight.Clients.Interfaces;
 using Searchlight.Models;
+using Searchlight.Services.Interfaces;
 
 namespace Searchlight.Services
 {
-    public class MazeSolver
+    public class MazeSolver : IMazeSolver
     {
         private readonly IMazeClient _mazeClient;
         private readonly Dictionary<string, MazeNode> _graph = new();
@@ -254,30 +253,5 @@ namespace Searchlight.Services
 
             return path;
         }
-
-        private class MazeNode
-        {
-            public List<string> AvailableDirections { get; set; } = new List<string>();
-            public Dictionary<string, string> Neighbours { get; set; } = new Dictionary<string, string>();
-            public MazeLocation Data { get; set; } = new MazeLocation();
-        }
-
-        private class NodeInfo
-        {
-            public string Id { get; set; } = string.Empty;
-            public string? ParentId { get; set; }
-            public string? EntryDirection { get; set; }
-        }
-    }
-
-    public class SolveResult
-    {
-        public bool Success { get; set; }
-        public MazeLocation StartLocation { get; set; } = new MazeLocation();
-        public MazeLocation? EndLocation { get; set; }
-        public int TotalMoves { get; set; }
-        public int TotalResets { get; set; }
-        public int TotalLocationsDiscovered { get; set; }
-        public List<MazeLocation> Path { get; set; } = new List<MazeLocation>();
     }
 }

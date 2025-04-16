@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Searchlight.Clients.Interfaces;
-using Searchlight.Services;
+using Searchlight.Services.Interfaces;
 using System;
 using System.Threading.Tasks;
 
@@ -10,11 +9,11 @@ namespace Searchlight.Controllers
     [Route("api/mazes")]
     public class MazeController : ControllerBase
     {
-        private readonly IMazeClientFactory _mazeClientFactory;
+        private readonly IMazeSolverService _mazeSolverService;
 
-        public MazeController(IMazeClientFactory mazeClientFactory)
+        public MazeController(IMazeSolverService mazeSolverService)
         {
-            _mazeClientFactory = mazeClientFactory;
+            _mazeSolverService = mazeSolverService;
         }
 
         [HttpGet("{mazeId}/solution")]
@@ -27,11 +26,8 @@ namespace Searchlight.Controllers
 
             try
             {
-                using var mazeClient = _mazeClientFactory.CreateClient(mazeId);
-                var mazeSolver = new MazeSolver(mazeClient);
-
                 var startTime = DateTime.UtcNow;
-                var result = await mazeSolver.SolveAsync();
+                var result = await _mazeSolverService.SolveMazeAsync(mazeId);
                 var endTime = DateTime.UtcNow;
                 var duration = endTime - startTime;
 
